@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Count-Down</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Create a countdown timer using HTML, CSS, and JavaScript.
+1. User should put the time (in minutes) and click start
+2. The timer starts counting down. It should stop when the time ends -->
+<body class="bg-cyan-950">
+    <main class="mt-44">
+        <div id="mainDiv" class="text-center bg-pink-200 mx-6 py-10 space-y-7 rounded-md">
+
+            <form action="" id="form" class="space-y-10">
+                <div>
+                    <label for="time"></label>
+                <input type="number" id="time" class="bg-cyan-800 w-40 rounded-md px-2 py-3 text-lg font-bold text-white" placeholder="Enter minutes">
+                </div>
+                <button id="button" class="bg-red-600 text-white px-3 py-3 rounded-md shadow-md hover:bg-red-900 font-bold">Start Count-Down</button>
+            </form>
+
+            <div id="countdown" class="bg-white mx-20 rounded-md text-3xl font-bold py-5 shadow-md"></div>
+            
+           
+        </div>
+    </main>
+
+    <script>
+        let form = document.getElementById("form")
+        let countdownId;
+        form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        let minute = document.getElementById("time").value;
+        let time = minute * 60;
+    
+        let countdownDiv = document.getElementById("countdown");
+        countdownDiv.innerHTML = "";
+        let timeContainer = document.createElement("p")
+        if (countdownId) clearInterval(countdownId);
+        
+      
+     
+       
+        function updateCountdownTime () {
+            time--;
+            minute = Math.floor(time/60);
+            let sec = time % 60;
+            timeContainer.innerHTML= `${minute} : ${sec}`;
+
+
+        
+            if(time < 0){
+    
+                clearInterval(countdownId);
+            }
+        } updateCountdownTime ()
+
+        document.getElementById("countdown").appendChild(timeContainer);
+        countdownId = setInterval(updateCountdownTime, 1000);
+        form.reset();
+        });
+            
+        
+    </script>
+</body>
+</html>
